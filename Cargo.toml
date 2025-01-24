@@ -5,5 +5,6 @@ members = [
   "cardinal-server",
   "cardinal-store",
   "cardinal-core",
+  "cardinal-edgedb",
 ]
 resolver = "2"
