@@ -1,4 +1,31 @@
 using extension auth;
 module default {
+  abstract type BaseObject {
+    required property created_at -> datetime {
+      default := datetime_current();
+    }
+    required property updated_at -> datetime {
+      default := datetime_current();
+    }
+    required property version -> int16 {
+      default := 1;
+    }
+  }
 
+  type Namespace extending BaseObject {
+    required property name -> str {
+      constraint exclusive;
+    }
+
+    required property environment -> Environment; 
+
+    required property config -> str;
+
+    property active -> bool {
+      default := true;
+    }
+  }
+
+
+  scalar type Environment extending enum<'prod', 'stag'>;
 }

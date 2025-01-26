@@ -1,16 +1,16 @@
 {
   description = "Cardinal - An Enterprise identity application built using Rust and EdgeDB";
-  
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    
+
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.rust-analyzer-src.follows = "";
     };
-    
+
     crane = {
       url = "github:ipetkov/crane";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,7 +57,7 @@
               cargo-audit
               cargo-outdated
               edgedb
-              docker-compose 
+              docker-compose
             ]);
 
             nativeBuildInputs = commonNativeBuildInputs;
@@ -67,10 +67,22 @@
               export RUST_LOG=debug
               export EDGEDB_HOST=localhost
               export EDGEDB_PORT=5656
+              export EDGEDB_USER=cardinal
+              export EDGEDB_PASSWORD=cardinal
+              export EDGEDB_DATABASE=cardinal
+
+              alias cw='cargo watch'
+              alias cb='cargo build'
+              alias ct='cargo test'
+              alias cr='cargo run'
+              alias ca='cargo audit'
+              alias co='cargo outdated'
+              alias edgedb='edgedb --tls-security=insecure'
             '';
           };
 
-        in {
+        in
+        {
           packages = {
             default = cardinal;
             cardinal = cardinal;
