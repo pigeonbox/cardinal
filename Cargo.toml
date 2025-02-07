@@ -1,0 +1,9 @@
+[workspace]
+members = [
+  "cardinal-cli",
+  "cardinal-identity",
+  "cardinal-server",
+  "cardinal-store",
+  "cardinal-core",
+]
+resolver = "2"

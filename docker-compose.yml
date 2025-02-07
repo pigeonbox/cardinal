@@ -1,0 +1,25 @@
+services:
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "1025:1025" 
+      - "8025:8025" 
+    environment:
+      MH_STORAGE: maildir
+      MH_MAILDIR_PATH: /tmp
+    volumes:
+      - ./volumes/mailhog-data:/tmp
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "1025"]
+      interval: 5s
+      timeout: 10s
+      retries: 3
+    networks:
+      - cardinal
+
+volumes:
+  volumes:
+
+networks:
+  cardinal:
