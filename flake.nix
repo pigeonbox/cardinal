@@ -55,6 +55,7 @@
               sqlx-cli
               # Development tools
               pgcli
+              bun
             ]);
             nativeBuildInputs = commonNativeBuildInputs;
             # Environment variables for local development
